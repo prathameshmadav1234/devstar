@@ -353,9 +353,9 @@
         ]
     },
     "online-video-editor": {
-        "name": "Online Video Editor",
+        "name": "online-video-editor",
         "link": "/online-video-editor",
-        "description": "This is a wonderful video editing tools",
+        "description": "A online video editing application",
         "contributors": [
             {
                 "name": "",

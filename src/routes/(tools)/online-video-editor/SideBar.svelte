@@ -1,5 +1,4 @@
 <script>
-	import VideoEditor from "./components/VideoEditor.svelte";
 </script>
 <!-- saurabh -->
 <div class="div-2">

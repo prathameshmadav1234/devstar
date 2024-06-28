@@ -1,8 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import TextOverlay from './TextOverlay.svelte';
-    import VideoFilters from './VideoFilters.svelte';
-    import ExportVideo from './ExportVideo.svelte';
+
 
     let videoFile;
     let videoUrl = '';

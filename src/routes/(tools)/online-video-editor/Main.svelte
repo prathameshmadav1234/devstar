@@ -3,11 +3,9 @@
 
 	import EditingArea from "./EditingArea.svelte";
 
-	import TimeLine from "./TimeLine.svelte";
+	import TimeLine from "./components/TimeLine/TimeLine.svelte";
 
-	import SideBar from "./SideBar.svelte";
 
-	import VideoEditor from "./components/VideoEditor.svelte";
 </script>
 
 <div class="div-13">

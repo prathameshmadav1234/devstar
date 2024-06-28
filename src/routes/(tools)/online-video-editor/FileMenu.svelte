@@ -1,11 +1,5 @@
 <script>
-	import EditingArea from "./EditingArea.svelte";
-
-	import TimeLine from "./TimeLine.svelte";
-
-	import SideBar from "./SideBar.svelte";
-
-	import VideoEditor from "./components/VideoEditor.svelte";
+	
 </script>
 <!-- parathmaesh -->
 <div class="div-16">
