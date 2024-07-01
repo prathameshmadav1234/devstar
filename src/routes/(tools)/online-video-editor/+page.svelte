@@ -4,14 +4,6 @@
 
 </script>
 
-<!-- <div class="card gap-16 items-center mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 overflow-hidden rounded-lg">
-	<main>
-		<h1>Video Editing App</h1>
-		<VideoEditor />
-	</main>
-	</div>
--->
-
 <div class="div">
 	<SideBar></SideBar>
 
@@ -20,11 +12,16 @@
 
 <style>
 	.div {
-		height: 60%;
-		width: auto;
+		
+		margin-top: -105px;
+		margin-left: -47px;
+		height: 81%;
+		width: 100%;
 		background-color: #fff;
 		display: flex;
 		gap: 0px;
+		overflow: hidden;
+		position: fixed;
 	}
 
 	@media (max-width: 991px) {

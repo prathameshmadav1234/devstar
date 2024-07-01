@@ -1,6 +1,6 @@
 {
-    "name": "online-video-editor",
-    "description":"A online video editing application",
+    "name": "Online Video Editor",
+    "description":"Online video editor is a free, online video editor that supports drag-and-drop basic editing and real-time collaboration features like resize, trim and crop,etc..",
     "contributors": [{
         "name": "Manas Dutta",
         "githubId": "manasdutta04"

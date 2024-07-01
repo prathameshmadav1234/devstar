@@ -1,28 +1,26 @@
 <script>
-	
 </script>
-<!-- parathmaesh -->
-<div class="div-16">
-	<div class="div-17">
-		<div class="div-18">All</div>
-		<div class="div-19">Videos</div>
-		<div class="div-20">Audio</div>
-		<div class="div-21">Images</div>
+
+<!-- parthamesh -->
+<div class="menu">
+	<div class="textdiv">
+		<div class="text">All</div>
+		<div class="text">Videos</div>
+		<div class="text">Audio</div>
+		<div class="text">Images</div>
 	</div>
-	<div class="div-22">Import Media</div>
+	<button class="btn">Import Media</button>
 	<img
 		alt=""
 		loading="lazy"
 		srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/4f047b8cdebdf460409082caf58eb77f81ce0cf9ed34b52d241b8e4fad05715a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
 		class="img -2"
 	/>
-	<div class="div-23">Video recording 1.mp4</div>
+	<div class="file-text">Video recording 1.mp4</div>
 </div>
 
 <style>
-	
-
-	.div-16 {
+	.menu {
 		background-color: #413946;
 		display: flex;
 		width: 100%;
@@ -32,9 +30,10 @@
 		font-weight: 600;
 		margin: 0 auto;
 		padding: 16px;
+		
 	}
 
-	.div-17 {
+	.textdiv {
 		display: flex;
 		gap: 16px;
 		font-size: 14px;
@@ -44,29 +43,17 @@
 	}
 
 	@media (max-width: 991px) {
-		.div-17 {
+		.textdiv {
 			white-space: initial;
 		}
 	}
 
-	.div-18 {
+	.text {
 		color: var(--White-1, #fff);
 		font-family: Inter, sans-serif;
 	}
 
-	.div-19 {
-		font-family: Inter, sans-serif;
-	}
-
-	.div-20 {
-		font-family: Inter, sans-serif;
-	}
-
-	.div-21 {
-		font-family: Inter, sans-serif;
-	}
-
-	.div-22 {
+	.btn {
 		justify-content: center;
 		align-items: center;
 		border-radius: 8px;
@@ -80,12 +67,12 @@
 	}
 
 	@media (max-width: 991px) {
-		.div-22 {
+		.btn {
 			padding: 0 20px;
 		}
 	}
 
-	.div-23 {
+	.file-text {
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		margin-top: 4px;
@@ -93,12 +80,4 @@
 			400 10px/120% Inter,
 			sans-serif;
 	}
-
-	@media (max-width: 991px) {
-		.div-23 {
-			white-space: initial;
-		}
-	}
-
-	
 </style>

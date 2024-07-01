@@ -16,4 +16,7 @@
 
 
 <style>
+	img{
+		height: inherit;
+	}
 </style>

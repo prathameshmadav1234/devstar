@@ -30,6 +30,7 @@
 		flex-grow: 1;
 		flex-basis: 0;
 		width: fit-content;
+		background: #323232;
 	}
 
 	@media (max-width: 991px) {
@@ -63,6 +64,7 @@
 		line-height: normal;
 		width: 22%;
 		margin-left: 0px;
+		height: 45vh;
 	}
 
 	@media (max-width: 991px) {
@@ -75,8 +77,9 @@
 		display: flex;
 		flex-direction: column;
 		line-height: normal;
-		width: 78%;
-		margin-left: 20px;
+		width: 100%;
+		/* margin-left: 20px; */
+		height: 45vh;
 	}
 
 	@media (max-width: 991px) {
