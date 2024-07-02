@@ -103,8 +103,6 @@
 		}
 	}
 
-	
-
 	.icon-box-text {
 		font-family: Inter, sans-serif;
 		margin-top: 4px;
