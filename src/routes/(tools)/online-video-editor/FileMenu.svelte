@@ -9,14 +9,44 @@
 
 	let selectedCategory = 'All';
 	let importedMedia = [];
+	let filteredMedia = [];
 
 	function handleCategoryClick(category) {
 		selectedCategory = category;
+		filterMedia();
 	}
 
 	function handleFileImport(event) {
 		const files = Array.from(event.target.files);
 		importedMedia = [...importedMedia, ...files];
+		filterMedia();
+	}
+
+	function filterMedia() {
+		if (selectedCategory === 'All') {
+			filteredMedia = importedMedia;
+		} else if (selectedCategory === 'Videos') {
+			filteredMedia = importedMedia.filter(file => getFileType(file) === 'video' && isVideoFile(file));
+		} else if (selectedCategory === 'Audio') {
+			filteredMedia = importedMedia.filter(file => getFileType(file) === 'audio' && isAudioFile(file));
+		} else if (selectedCategory === 'Images') {
+			filteredMedia = importedMedia.filter(file => getFileType(file) === 'image' && isImageFile(file));
+		}
+	}
+
+	function isImageFile(file) {
+		const imageExtensions = ['.jpg', '.jpeg', '.png'];
+		return imageExtensions.some(ext => file.name.toLowerCase().endsWith(ext));
+	}
+
+	function isVideoFile(file) {
+		const videoExtensions = ['.mp4'];
+		return videoExtensions.some(ext => file.name.toLowerCase().endsWith(ext));
+	}
+
+	function isAudioFile(file) {
+		const audioExtensions = ['.mp3'];
+		return audioExtensions.some(ext => file.name.toLowerCase().endsWith(ext));
 	}
 
 	function getFileType(file) {
@@ -28,6 +58,7 @@
 
 	function deleteMediaItem(index) {
 		importedMedia = importedMedia.filter((_, i) => i !== index);
+		filterMedia();
 	}
 </script>
 
@@ -59,7 +90,7 @@
 		on:change={handleFileImport} 
 		style="display: none;"
 	/>
-	{#each importedMedia as file, index (file.name)}
+	{#each filteredMedia as file, index (file.name)}
 		<div class="media-item">
 			{#if getFileType(file) === 'image'}
 				<img
