@@ -84,6 +84,7 @@
 		width: 100%;
 		/* margin-left: 20px; */
 		height: 75vh;
+		border-left: 1px solid rgb(196, 196, 193);
 	}
 
 	@media (max-width: 991px) {

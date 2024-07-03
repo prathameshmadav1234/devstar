@@ -28,7 +28,8 @@
 		display: flex;
 		flex-direction: column;
 		padding: 16px 0 16px 24px;
-		background: #a02121;
+		/* background: #a02121; */
+		border-top: 1px solid rgb(196, 196, 193);
 	}
 
 	@media (max-width: 991px) {
