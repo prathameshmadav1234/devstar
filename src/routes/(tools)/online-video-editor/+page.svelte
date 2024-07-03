@@ -1,32 +1,27 @@
 <script>
-	import Main from "./Main.svelte";
-	import SideBar from "./SideBar.svelte";
-
+	
 </script>
 
-<div class="div">
-	<SideBar></SideBar>
-
-	<Main></Main>
-</div>
+<section
+	class="hero bg-gradient-to-r from-purple-500 to-blue-500 text-white flex flex-col justify-center items-center h-screen"
+>
+	<h1 class="hero__title text-4xl font-bold">Online Video Editor</h1>
+	<p class="hero__text text-xl mb-8">
+		Create your own video and edit it in any way on both your phone and
+		computer
+	</p>
+	<button
+		class="hero__button bg-white text-purple-500 px-6 py-2 rounded-md hover:bg-opacity-75 focus:outline-none"
+	>
+	
+	
+	<a href="/online-video-editor/overview">Overview</a>
+	
+</button>
+<a href="/online-video-editor/mainpage">Overview</a>
+	
+</section>
 
 <style>
-	.div {
-		
-		margin-top: -105px;
-		margin-left: -47px;
-		height: 81%;
-		width: 100%;
-		background-color: #fff;
-		display: flex;
-		gap: 0px;
-		overflow: hidden;
-		position: fixed;
-	}
-
-	@media (max-width: 991px) {
-		.div {
-			flex-wrap: wrap;
-		}
-	}
+	
 </style>

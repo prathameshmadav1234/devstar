@@ -1,13 +1,13 @@
 <script>
-	import { onMount } from 'svelte';
-	import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
-	import { library, dom } from '@fortawesome/fontawesome-svg-core';
-	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+	import { onMount } from "svelte";
+	import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+	import { library, dom } from "@fortawesome/fontawesome-svg-core";
+	import { FontAwesomeIcon } from "@fortawesome/svelte-fontawesome";
 
 	library.add(faTrash, faPlus);
 	dom.watch();
 
-	let selectedCategory = 'All';
+	let selectedCategory = "All";
 	let importedMedia = [];
 
 	function handleCategoryClick(category) {
@@ -20,10 +20,10 @@
 	}
 
 	function getFileType(file) {
-		if (file.type.startsWith('video/')) return 'video';
-		if (file.type.startsWith('audio/')) return 'audio';
-		if (file.type.startsWith('image/')) return 'image';
-		return 'other';
+		if (file.type.startsWith("video/")) return "video";
+		if (file.type.startsWith("audio/")) return "audio";
+		if (file.type.startsWith("image/")) return "image";
+		return "other";
 	}
 
 	function deleteMediaItem(index) {
@@ -33,48 +33,48 @@
 
 <div class="div-16">
 	<div class="div-17">
-		<button 
-			class="div-18 {selectedCategory === 'All' ? 'active' : ''}" 
-			on:click={() => handleCategoryClick('All')}
-		>All</button>
-		<button 
-			class="div-19 {selectedCategory === 'Videos' ? 'active' : ''}" 
-			on:click={() => handleCategoryClick('Videos')}
-		>Videos</button>
-		<button 
-			class="div-20 {selectedCategory === 'Audio' ? 'active' : ''}" 
-			on:click={() => handleCategoryClick('Audio')}
-		>Audio</button>
-		<button 
-			class="div-21 {selectedCategory === 'Images' ? 'active' : ''}" 
-			on:click={() => handleCategoryClick('Images')}
-		>Images</button>
+		<button
+			class="div-18 {selectedCategory === 'All' ? 'active' : ''}"
+			on:click={() => handleCategoryClick("All")}>All</button
+		>
+		<button
+			class="div-19 {selectedCategory === 'Videos' ? 'active' : ''}"
+			on:click={() => handleCategoryClick("Videos")}>Videos</button
+		>
+		<button
+			class="div-20 {selectedCategory === 'Audio' ? 'active' : ''}"
+			on:click={() => handleCategoryClick("Audio")}>Audio</button
+		>
+		<button
+			class="div-21 {selectedCategory === 'Images' ? 'active' : ''}"
+			on:click={() => handleCategoryClick("Images")}>Images</button
+		>
 	</div>
 	<label class="div-22" for="fileInput">Import Media</label>
-	<input 
-		id="fileInput" 
-		type="file" 
-		accept="video/*,audio/*,image/*" 
-		multiple 
-		on:change={handleFileImport} 
+	<input
+		id="fileInput"
+		type="file"
+		accept="video/*,audio/*,image/*"
+		multiple
+		on:change={handleFileImport}
 		style="display: none;"
 	/>
 	{#each importedMedia as file, index (file.name)}
 		<div class="media-item">
-			{#if getFileType(file) === 'image'}
+			{#if getFileType(file) === "image"}
 				<img
 					alt=""
 					loading="lazy"
 					src={URL.createObjectURL(file)}
 					class="img-2"
 				/>
-			{:else if getFileType(file) === 'video'}
+			{:else if getFileType(file) === "video"}
 				<video
 					controls
 					src={URL.createObjectURL(file)}
 					class="video-preview"
 				></video>
-			{:else if getFileType(file) === 'audio'}
+			{:else if getFileType(file) === "audio"}
 				<audio
 					controls
 					src={URL.createObjectURL(file)}
@@ -87,10 +87,17 @@
 			{/if}
 			<div class="div-23">{file.name}</div>
 			<div class="icon-container">
-				<button class="icon-button" on:click={() => deleteMediaItem(index)}>
+				<button
+					class="icon-button"
+					on:click={() => deleteMediaItem(index)}
+				>
 					<FontAwesomeIcon icon={faTrash} />
 				</button>
-				<button class="icon-button" on:click={() => document.getElementById('fileInput').click()}>
+				<button
+					class="icon-button"
+					on:click={() =>
+						document.getElementById("fileInput").click()}
+				>
 					<FontAwesomeIcon icon={faPlus} />
 				</button>
 			</div>
@@ -128,17 +135,25 @@
 		}
 	}
 
-	.div-18, .div-19, .div-20, .div-21 {
+	.div-18,
+	.div-19,
+	.div-20,
+	.div-21 {
 		font-family: Inter, sans-serif;
 		background: none;
 		border: none;
 		cursor: pointer;
 		padding: 6px 10px;
 		border-radius: 4px;
-		transition: background-color 0.3s, color 0.3s;
+		transition:
+			background-color 0.3s,
+			color 0.3s;
 	}
 
-	.div-18:hover, .div-19:hover, .div-20:hover, .div-21:hover {
+	.div-18:hover,
+	.div-19:hover,
+	.div-20:hover,
+	.div-21:hover {
 		background-color: #2f2b34;
 	}
 
@@ -155,7 +170,9 @@
 		margin-top: 16px;
 		text-align: center;
 		padding: 12px 16px;
-		font: 16px/150% Inter, sans-serif;
+		font:
+			16px/150% Inter,
+			sans-serif;
 		cursor: pointer;
 	}
 
@@ -169,7 +186,9 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		margin-top: 4px;
-		font: 400 10px/120% Inter, sans-serif;
+		font:
+			400 10px/120% Inter,
+			sans-serif;
 	}
 
 	@media (max-width: 991px) {
@@ -185,7 +204,8 @@
 		align-items: center;
 	}
 
-	.video-preview, .audio-preview {
+	.video-preview,
+	.audio-preview {
 		width: 100%;
 		max-width: 600px;
 		margin-top: 10px;
