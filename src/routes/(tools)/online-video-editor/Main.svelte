@@ -31,8 +31,11 @@
 		flex-basis: 0;
 		width: fit-content;
 		background: #323232;
+		
 	}
-
+	.div-14 {
+		height: 50vh;
+	}
 	@media (max-width: 991px) {
 		.div-13 {
 			max-width: 100%;
@@ -62,9 +65,9 @@
 		display: flex;
 		flex-direction: column;
 		line-height: normal;
-		width: 22%;
+		/* width: 25%; */
 		margin-left: 0px;
-		height: 45vh;
+		height: 75vh;
 	}
 
 	@media (max-width: 991px) {
@@ -74,12 +77,13 @@
 	}
 
 	.column-2 {
+		margin-left: -20px;
 		display: flex;
 		flex-direction: column;
 		line-height: normal;
 		width: 100%;
 		/* margin-left: 20px; */
-		height: 45vh;
+		height: 75vh;
 	}
 
 	@media (max-width: 991px) {

@@ -15,13 +15,14 @@
 	>
 	
 	
-	<a href="/online-video-editor/overview">Overview</a>
+	<a href="/online-video-editor/mainpage">Get Started</a>
 	
 </button>
-<a href="/online-video-editor/mainpage">Overview</a>
+
 	
 </section>
 
 <style>
+	
 	
 </style>

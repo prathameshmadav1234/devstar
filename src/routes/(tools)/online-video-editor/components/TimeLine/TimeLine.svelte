@@ -28,6 +28,7 @@
 		display: flex;
 		flex-direction: column;
 		padding: 16px 0 16px 24px;
+		background: #a02121;
 	}
 
 	@media (max-width: 991px) {
@@ -42,6 +43,7 @@
 		display: flex;
 		padding-right: 24px;
 		gap: 10px;
+		
 	}
 
 	@media (max-width: 991px) {

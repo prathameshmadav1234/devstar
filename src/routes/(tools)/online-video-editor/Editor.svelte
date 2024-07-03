@@ -8,15 +8,14 @@
 	<SideBar></SideBar>
 
 	<Main></Main>
-	<div>hello</div>
+	
 </div>
 
 <style>
 	.div {
-		
-		margin-top: -105px;
-		margin-left: -47px;
-		height: 81%;
+		margin-top: -112px;
+		margin-left: -46px;
+		height: 85%;
 		width: 100%;
 		background-color: #fff;
 		display: flex;
