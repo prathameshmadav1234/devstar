@@ -1,6 +1,10 @@
 <script>
 	import Img from "./Img.svelte";
-
+	import play from "./assets/play.svg";
+	import backward from "./assets/back.svg";
+	import forward from "./assets/forward.svg";
+	import zoom from "./assets/zoom.svg";
+	import game from "./assets/game.svg";
 	let projectTitle = "Untitled Project";
 
 	function handleExport() {
@@ -23,39 +27,24 @@
 			</button>
 		</div>
 	</div>
-	<img
+
+	<!-- <img
 		alt="Game Screenshot"
 		loading="lazy"
 		src="https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/4da4c2a296afeeff110b4f5a5c374dc8d0c414be0e7c3dd2268132bd1a36ffd0?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
 		class="main-image"
-	/>
+	/> -->
+	<img class="main-image" src={game} alt="main-img" />
 	<div class="footer">
 		<div class="footer-icons">
-			<img
-				alt="Footer Icon 1"
-				loading="lazy"
-				src="https://cdn.builder.io/api/v1/image/assets/TEMP/be697dd2f9a381dded14f0c2db3e01e3970ec6ccc07eaaad355589a9b28666e1?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
-				class="footer-icon"
-			/>
-			<img
-				alt="Footer Icon 2"
-				loading="lazy"
-				src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7e8151bc4ea153f2aafaec558c34f64b8e496ca2f66e90c77025febe83bf781?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
-				class="footer-icon"
-			/>
-			<img
-				alt="Footer Icon 3"
-				loading="lazy"
-				src="https://cdn.builder.io/api/v1/image/assets/TEMP/50434a0d2dfd999931ce93c4db7e8bb50f6718ae5903a4a168a6813641ad54f2?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
-				class="footer-icon"
-			/>
+			<img class="footer-icon" src={backward} alt="backward" />
+
+			<img class="footer-icon" src={play} alt="play" />
+
+			<img class="footer-icon" src={forward} alt="backward" />
 		</div>
-		<img
-			alt="Additional Footer Icon"
-			loading="lazy"
-			src="https://cdn.builder.io/api/v1/image/assets/TEMP/46d5bd3fe09d1ef571e4b307090c8b90a5f6939cba80a37ce59d7481b9b63235?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
-			class="additional-footer-icon"
-		/>
+
+		<img class="additional-footer-icon" src={zoom} alt="zoom" />
 	</div>
 </div>
 
