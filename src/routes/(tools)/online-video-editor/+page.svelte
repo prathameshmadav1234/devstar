@@ -6,19 +6,19 @@
 	class="main flex flex-col items-center justify-center min-h-screen py-24 px-4 sm:px-6 lg:px-8"
 >
 	<div class="text-center ">
-		<h1 class="md:text-6xl font-extrabold text-white sm:text-5xl">
-			Free Online <span class="vidtext text-6xl">Video</span>
+		<h1 class="md:text-6xl font-extrabold  sm:text-5xl">
+			Free Online <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-500 text-6xl">Video</span>
 		</h1>
-		<h2 class="md:text-6xl font-extrabold text-white sm:text-3xl mt-2">
-			<span class="text-white text-6xl">Editor</span>
+		<h2 class="md:text-6xl font-extrabold sm:text-3xl mt-2">
+			<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-500 text-6xl">Editor</span>
 		</h2>
 	</div>
 	<div class="mt-8 text-center">
-		<p class="text-white font-bold">
+		<p class=" font-bold">
 			Create professional quality videos for your brand with invideo's
 			online video editor.
 		</p>
-		<p class="text-white font-bold mt-4">
+		<p class="font-bold mt-4">
 			Choose from 7000+ tailor-made marketing video templates and
 			customize them with transitions, effects, filters, text boxes, and
 			more.
@@ -41,9 +41,7 @@
 		color: white;
 		margin: 0;
 	}
-	.vidtext {
-		
-		background: var(--gradient-deepblue-raspberry-red);
-	}
+
+	
 	
 </style>
