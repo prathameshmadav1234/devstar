@@ -5,37 +5,25 @@
 	import transition from "./assets/transition.svg";
 	import layout from "./assets/layout.svg";
 	import logo from "./assets/logo.svg";
+
+	const icons = [
+		{ src: media, alt: "media", label: "Media" },
+		{ src: text, alt: "text", label: "Text" },
+		{ src: audio, alt: "audio", label: "Audio" },
+		{ src: transition, alt: "transition", label: "Transition" },
+		{ src: layout, alt: "layout", label: "Layout" }
+	];
 </script>
 
-<!-- saurabh -->
 <div class="sidebar">
-	<img class="img" src={logo} alt="logo" />
+	<img class="img logo" src={logo} alt="Logo" />
 
-	<div class="icon-box">
-		<img class="img" src={media} alt="media" />
-
-		<div class="icon-box-text">Media</div>
-	</div>
-	<div class="icon-box">
-		<img class="img" src={text} alt="text" />
-
-		<div class="icon-box-text">Text</div>
-	</div>
-	<div class="icon-box">
-		<img class="img" src={audio} alt="audio" />
-
-		<div class="icon-box-text">Audio</div>
-	</div>
-	<div class="icon-box">
-		<img class="img" src={transition} alt="transition" />
-
-		<div class="icon-box-text">Transition</div>
-	</div>
-	<div class="icon-box">
-		<img class="img" src={layout} alt="layout" />
-
-		<div class="icon-box-text">Layout</div>
-	</div>
+	{#each icons as icon}
+		<div class="icon-box" tabindex="0" aria-label={icon.label}>
+			<img class="img" src={icon.src} alt={icon.alt} />
+			<div class="icon-box-text">{icon.label}</div>
+		</div>
+	{/each}
 </div>
 
 <style>
@@ -67,17 +55,19 @@
 		width: auto;
 		align-self: center;
 	}
-	.icon-box:hover {
+
+	.logo {
+		height: 40px;
+	}
+
+	.icon-box:hover, .icon-box:focus {
 		cursor: pointer;
 		opacity: 0.8;
 		transform: scale(1.2);
-		transition:
-			transform 0.2s,
-			opacity 0.2s;
+		transition: transform 0.2s, opacity 0.2s;
 	}
 
 	.icon-box {
-		/* background-color: var(--Background-1, #413946); */
 		display: flex;
 		margin-top: 16px;
 		flex-direction: column;
