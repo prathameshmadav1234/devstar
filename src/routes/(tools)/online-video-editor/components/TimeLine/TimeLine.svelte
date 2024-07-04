@@ -86,7 +86,12 @@
 		<div class="sidetools">
 			<img class="img" src={plus} alt="plus" on:click={handlePlus} />
 			<img class="img" src={minus} alt="minus" on:click={handleMinus} />
-			<img class="img" src={expand} alt="expand" on:click={handleExpand} />
+			<img
+				class="img"
+				src={expand}
+				alt="expand"
+				on:click={handleExpand}
+			/>
 		</div>
 	</div>
 
@@ -152,7 +157,9 @@
 		color: var(--White-1, #fff);
 		text-align: center;
 		margin: auto 0;
-		font: 600 14px/143% Inter, sans-serif;
+		font:
+			600 14px/143% Inter,
+			sans-serif;
 	}
 
 	@media (max-width: 991px) {
@@ -238,9 +245,11 @@
 		}
 	}
 	img:hover {
-	cursor: pointer;
-	opacity: 0.8;
-	transform: scale(1.1);
-	transition: transform 0.2s, opacity 0.2s;
-}
+		cursor: pointer;
+		opacity: 0.8;
+		transform: scale(1.1);
+		transition:
+			transform 0.2s,
+			opacity 0.2s;
+	}
 </style>

@@ -67,6 +67,14 @@
 		width: auto;
 		align-self: center;
 	}
+	.icon-box:hover {
+		cursor: pointer;
+		opacity: 0.8;
+		transform: scale(1.2);
+		transition:
+			transform 0.2s,
+			opacity 0.2s;
+	}
 
 	.icon-box {
 		/* background-color: var(--Background-1, #413946); */
