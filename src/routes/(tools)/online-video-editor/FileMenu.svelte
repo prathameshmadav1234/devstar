@@ -90,50 +90,52 @@
 		on:change={handleFileImport}
 		style="display: none;"
 	/>
-	{#each filteredMedia as file, index (file.name)}
-		<div class="media-item">
-			{#if getFileType(file) === "image"}
-				<img
-					alt=""
-					loading="lazy"
-					src={URL.createObjectURL(file)}
-					class="img-2"
-				/>
-			{:else if getFileType(file) === "video"}
-				<video
-					controls
-					src={URL.createObjectURL(file)}
-					class="video-preview"
-				></video>
-			{:else if getFileType(file) === "audio"}
-				<audio
-					controls
-					src={URL.createObjectURL(file)}
-					class="audio-preview"
-				></audio>
-			{:else}
-				<div class="unknown-preview">
-					<p>Unsupported file type</p>
+	<div class="media-grid">
+		{#each filteredMedia as file, index (file.name)}
+			<div class="media-item">
+				{#if getFileType(file) === "image"}
+					<img
+						alt=""
+						loading="lazy"
+						src={URL.createObjectURL(file)}
+						class="img-2"
+					/>
+				{:else if getFileType(file) === "video"}
+					<video
+						controls
+						src={URL.createObjectURL(file)}
+						class="video-preview"
+					></video>
+				{:else if getFileType(file) === "audio"}
+					<audio
+						controls
+						src={URL.createObjectURL(file)}
+						class="audio-preview"
+					></audio>
+				{:else}
+					<div class="unknown-preview">
+						<p>Unsupported file type</p>
+					</div>
+				{/if}
+				<div class="div-23">{file.name}</div>
+				<div class="icon-container">
+					<button
+						class="icon-button"
+						on:click={() => deleteMediaItem(index)}
+					>
+						<FontAwesomeIcon icon={faTrash} />
+					</button>
+					<button
+						class="icon-button"
+						on:click={() =>
+							document.getElementById("fileInput").click()}
+					>
+						<FontAwesomeIcon icon={faPlus} />
+					</button>
 				</div>
-			{/if}
-			<div class="div-23">{file.name}</div>
-			<div class="icon-container">
-				<button
-					class="icon-button"
-					on:click={() => deleteMediaItem(index)}
-				>
-					<FontAwesomeIcon icon={faTrash} />
-				</button>
-				<button
-					class="icon-button"
-					on:click={() =>
-						document.getElementById("fileInput").click()}
-				>
-					<FontAwesomeIcon icon={faPlus} />
-				</button>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -144,10 +146,10 @@
 		flex-grow: 1;
 		flex-direction: column;
 		color: var(--White-1, #fff);
-		font-weight: 600;
+		font-weight: 60;
 		margin: 0 auto;
-		padding: 16px;
-		max-height: 500px; /* Set a maximum height */
+		padding: 10px;
+		max-height: 370px; /* Set a maximum height */
 		overflow-y: auto; /* Enable vertical scrolling */
 	}
 
@@ -228,23 +230,26 @@
 		}
 	}
 
-	.media-item {
+	.media-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr); /* Two columns layout */
+		gap: 16px;
 		margin-top: 16px;
+	}
+
+	.media-item {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
 	.video-preview,
-	.audio-preview {
-		width: 100%;
-		max-width: 600px;
-		margin-top: 10px;
-	}
-
+	.audio-preview,
 	.img-2 {
 		width: 100%;
-		max-width: 600px;
+		max-width: 200px; /* Set a fixed width for the previews */
+		max-height: 150px; /* Set a fixed height for the previews */
+		object-fit: cover; /* Ensure the media fits within the given dimensions */
 		margin-top: 10px;
 	}
 
