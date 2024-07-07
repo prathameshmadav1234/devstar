@@ -69,7 +69,7 @@
   
 		  videoElement.currentTime += frameInterval;
 		});
-  
+
 		videoElement.currentTime = frameInterval;
 	  });
 	}
