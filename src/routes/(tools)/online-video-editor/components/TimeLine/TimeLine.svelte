@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import trim from "../../assets/trim.svg";
 	import undo from "../../assets/undo.svg";
 	import redo from "../../assets/redo.svg";
@@ -9,64 +10,223 @@
 	import plus from "../../assets/plus.svg";
 	import minus from "../../assets/minus.svg";
 	import expand from "../../assets/arrow.svg";
-	import videoimg from "../../assets/small.svg";
-
+	import videoFilePath from "../../assets/sample.mp4";
+  
 	let currentTime = "00:00:00";
 	let totalTime = "00:15:22";
-	let segments = [
-		"0",
-		"0:02",
-		"0:04",
-		"0:06",
-		"0:08",
-		"0:10",
-		"0:12",
-		"0:14",
-		"0:16",
-		"0:18",
-		"0:20",
-		"0:22",
-	];
+	let segments = [];
+  
+	let actionsHistory = [];
+	let actionsRedo = [];
+	let videoFrames = [];
+  
+	const frameInterval = 2; // Extract a frame every 2 seconds
+  
+	onMount(() => {
+	  const videoFile = document.createElement("video");
+	  videoFile.src = videoFilePath;
+  
+	  videoFile.addEventListener("loadedmetadata", () => {
+		totalTime = formatTime(videoFile.duration);
+		initializeSegments(videoFile.duration);
+		extractVideoFrames(videoFile);
+	  });
+	});
+  
+	function initializeSegments(duration) {
+	  const segmentCount = Math.floor(duration / frameInterval);
+	  segments = Array.from({ length: segmentCount }, (_, i) => formatTime(i * frameInterval));
+	}
+  
+	function formatTime(seconds) {
+	  const date = new Date(0);
+	  date.setSeconds(seconds);
+	  return date.toISOString().substr(11, 8);
+	}
+  
+	function extractVideoFrames(videoFile) {
+	  const videoElement = document.createElement("video");
+	  videoElement.src = videoFile.src;
+  
+	  videoElement.addEventListener("loadeddata", () => {
+		const canvas = document.createElement("canvas");
+		const context = canvas.getContext("2d");
+  
+		videoElement.currentTime = 0;
+  
+		videoElement.addEventListener("seeked", function captureFrame() {
+		  if (videoElement.currentTime >= videoFile.duration) {
+			videoElement.removeEventListener("seeked", captureFrame);
+			return;
+		  }
+  
+		  canvas.width = videoElement.videoWidth;
+		  canvas.height = videoElement.videoHeight;
+		  context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+  
+		  // Create a new array each time you update videoFrames
+		  videoFrames = [...videoFrames, canvas.toDataURL()];
+  
+		  videoElement.currentTime += frameInterval;
+		});
+  
+		videoElement.currentTime = frameInterval;
+	  });
+	}
+  
+	function handleUndo() {
+	  if (actionsHistory.length > 0) {
+		const lastAction = actionsHistory.pop();
+		actionsRedo.push(lastAction);
+		console.log("Undo action:", lastAction);
+		// Reverse the last action
+		switch (lastAction) {
+		  case 'trim':
+			// Handle trim undo logic
+			break;
+		  case 'duplicate':
+			// Handle duplicate undo logic
+			break;
+		  case 'up':
+			// Handle move up undo logic
+			break;
+		  case 'down':
+			// Handle move down undo logic
+			break;
+		  case 'delete':
+			// Handle delete undo logic
+			break;
+		  case 'zoom in':
+			// Handle zoom in undo logic
+			break;
+		  case 'zoom out':
+			// Handle zoom out undo logic
+			break;
+		  case 'expand':
+			// Handle expand undo logic
+			break;
+		  default:
+			break;
+		}
+	  }
+	}
+  
+	function handleRedo() {
+	  if (actionsRedo.length > 0) {
+		const lastUndoneAction = actionsRedo.pop();
+		actionsHistory.push(lastUndoneAction);
+		console.log("Redo action:", lastUndoneAction);
+		// Reapply the last undone action
+		switch (lastUndoneAction) {
+		  case 'trim':
+			// Handle trim redo logic
+			break;
+		  case 'duplicate':
+			// Handle duplicate redo logic
+			break;
+		  case 'up':
+			// Handle move up redo logic
+			break;
+		  case 'down':
+			// Handle move down redo logic
+			break;
+		  case 'delete':
+			// Handle delete redo logic
+			break;
+		  case 'zoom in':
+			// Handle zoom in redo logic
+			break;
+		  case 'zoom out':
+			// Handle zoom out redo logic
+			break;
+		  case 'expand':
+			// Handle expand redo logic
+			break;
+		  default:
+			break;
+		}
+	  }
+	}
+  
+	function handleTrim() {
+	  actionsHistory.push("trim");
+	  console.log("Trim action");
+	  // Trim logic goes here
+	  // For example, trim the last segment
+	  segments.pop();
+	}
+  
+	function handleDuplicate() {
+	  actionsHistory.push("duplicate");
+	  console.log("Duplicate action");
+	  // Duplicate logic goes here
+	  // For example, duplicate the last segment
+	  if (segments.length > 0) {
+		segments.push(segments[segments.length - 1]);
+	  }
+	}
+  
+	function handleUp() {
+	  actionsHistory.push("up");
+	  console.log("Move up action");
+	  // Move up logic goes here
+	  // For example, swap the last two segments
+	  if (segments.length > 1) {
+		let temp = segments[segments.length - 1];
+		segments[segments.length - 1] = segments[segments.length - 2];
+		segments[segments.length - 2] = temp;
+	  }
+	}
+  
+	function handleDown() {
+	  actionsHistory.push("down");
+	  console.log("Move down action");
+	  // Move down logic goes here
+	  // For example, swap the first two segments
+	  if (segments.length > 1) {
+		let temp = segments[0];
+		segments[0] = segments[1];
+		segments[1] = temp;
+	  }
+	}
+  
+	function handleDelete() {
+	  actionsHistory.push("delete");
+	  console.log("Delete action");
+	  // Delete logic goes here
+	  // For example, remove the last segment
+	  segments.pop();
+	}
+  
+	function handlePlus() {
+	  actionsHistory.push("zoom in");
+	  console.log("Zoom in action");
+	  // Zoom in logic goes here
+	  // For example, double the segments
+	  segments = segments.map((segment, index) => {
+		const seconds = index * 1;
+		return formatTime(seconds);
+	  });
+	}
+  
+	function handleMinus() {
+	  actionsHistory.push("zoom out");
+	  console.log("Zoom out action");
+	  // Zoom out logic goes here
+	  // For example, halve the segments
+	  segments = segments.filter((_, index) => index % 2 === 0);
+	}
 
-	const handleUndo = () => {
-		console.log("Undo action");
-	};
-
-	const handleRedo = () => {
-		console.log("Redo action");
-	};
-
-	const handleTrim = () => {
-		console.log("Trim action");
-	};
-
-	const handleDuplicate = () => {
-		console.log("Duplicate action");
-	};
-
-	const handleUp = () => {
-		console.log("Move up action");
-	};
-
-	const handleDown = () => {
-		console.log("Move down action");
-	};
-
-	const handleDelete = () => {
-		console.log("Delete action");
-	};
-
-	const handlePlus = () => {
-		console.log("Zoom in action");
-	};
-
-	const handleMinus = () => {
-		console.log("Zoom out action");
-	};
-
-	const handleExpand = () => {
+	function handleExpand() {
+		actionsHistory.push("expand");
 		console.log("Expand action");
-	};
+		// Expand logic goes here
+		// For example, expand each segment time by 1 second
+		segments = segments.map((segment, index) => {
+			const seconds = index * 3;
+			return formatTime(seconds);
+		});
+	}
 </script>
 
 <div class="container">
@@ -86,12 +246,7 @@
 		<div class="sidetools">
 			<img class="img" src={plus} alt="plus" on:click={handlePlus} />
 			<img class="img" src={minus} alt="minus" on:click={handleMinus} />
-			<img
-				class="img"
-				src={expand}
-				alt="expand"
-				on:click={handleExpand}
-			/>
+			<img class="img" src={expand} alt="expand" on:click={handleExpand} />
 		</div>
 	</div>
 
@@ -104,11 +259,10 @@
 		{/each}
 	</div>
 
-	<div class="video-img">
-		<img src={videoimg} alt="img" />
-		<img src={videoimg} alt="img" />
-		<img src={videoimg} alt="img" />
-		<img src={videoimg} alt="img" />
+	<div class="video-frames">
+		{#each videoFrames as frame}
+			<img src={frame} alt="Video frame" />
+		{/each}
 	</div>
 </div>
 
