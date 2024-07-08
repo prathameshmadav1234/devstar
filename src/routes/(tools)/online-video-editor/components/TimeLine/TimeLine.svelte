@@ -64,12 +64,11 @@
 		  canvas.height = videoElement.videoHeight;
 		  context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
   
-		  // Create a new array each time you update videoFrames
 		  videoFrames = [...videoFrames, canvas.toDataURL()];
   
 		  videoElement.currentTime += frameInterval;
 		});
-
+  
 		videoElement.currentTime = frameInterval;
 	  });
 	}
@@ -83,27 +82,38 @@
 		switch (lastAction) {
 		  case 'trim':
 			// Handle trim undo logic
+			segments.push("00:00:00"); // Example logic, adjust as needed
 			break;
 		  case 'duplicate':
 			// Handle duplicate undo logic
+			segments.pop();
 			break;
 		  case 'up':
 			// Handle move up undo logic
+			handleDown();
 			break;
 		  case 'down':
 			// Handle move down undo logic
+			handleUp();
 			break;
 		  case 'delete':
 			// Handle delete undo logic
+			segments.push("00:00:00"); // Example logic, adjust as needed
 			break;
 		  case 'zoom in':
 			// Handle zoom in undo logic
+			handleMinus();
 			break;
 		  case 'zoom out':
 			// Handle zoom out undo logic
+			handlePlus();
 			break;
 		  case 'expand':
 			// Handle expand undo logic
+			segments = segments.map((segment, index) => {
+				const seconds = index * 1;
+				return formatTime(seconds);
+			});
 			break;
 		  default:
 			break;
@@ -119,28 +129,28 @@
 		// Reapply the last undone action
 		switch (lastUndoneAction) {
 		  case 'trim':
-			// Handle trim redo logic
+			handleTrim();
 			break;
 		  case 'duplicate':
-			// Handle duplicate redo logic
+			handleDuplicate();
 			break;
 		  case 'up':
-			// Handle move up redo logic
+			handleUp();
 			break;
 		  case 'down':
-			// Handle move down redo logic
+			handleDown();
 			break;
 		  case 'delete':
-			// Handle delete redo logic
+			handleDelete();
 			break;
 		  case 'zoom in':
-			// Handle zoom in redo logic
+			handlePlus();
 			break;
 		  case 'zoom out':
-			// Handle zoom out redo logic
+			handleMinus();
 			break;
 		  case 'expand':
-			// Handle expand redo logic
+			handleExpand();
 			break;
 		  default:
 			break;
@@ -151,16 +161,12 @@
 	function handleTrim() {
 	  actionsHistory.push("trim");
 	  console.log("Trim action");
-	  // Trim logic goes here
-	  // For example, trim the last segment
 	  segments.pop();
 	}
   
 	function handleDuplicate() {
 	  actionsHistory.push("duplicate");
 	  console.log("Duplicate action");
-	  // Duplicate logic goes here
-	  // For example, duplicate the last segment
 	  if (segments.length > 0) {
 		segments.push(segments[segments.length - 1]);
 	  }
@@ -169,8 +175,6 @@
 	function handleUp() {
 	  actionsHistory.push("up");
 	  console.log("Move up action");
-	  // Move up logic goes here
-	  // For example, swap the last two segments
 	  if (segments.length > 1) {
 		let temp = segments[segments.length - 1];
 		segments[segments.length - 1] = segments[segments.length - 2];
@@ -181,8 +185,6 @@
 	function handleDown() {
 	  actionsHistory.push("down");
 	  console.log("Move down action");
-	  // Move down logic goes here
-	  // For example, swap the first two segments
 	  if (segments.length > 1) {
 		let temp = segments[0];
 		segments[0] = segments[1];
@@ -193,16 +195,12 @@
 	function handleDelete() {
 	  actionsHistory.push("delete");
 	  console.log("Delete action");
-	  // Delete logic goes here
-	  // For example, remove the last segment
 	  segments.pop();
 	}
   
 	function handlePlus() {
 	  actionsHistory.push("zoom in");
 	  console.log("Zoom in action");
-	  // Zoom in logic goes here
-	  // For example, double the segments
 	  segments = segments.map((segment, index) => {
 		const seconds = index * 1;
 		return formatTime(seconds);
@@ -212,41 +210,42 @@
 	function handleMinus() {
 	  actionsHistory.push("zoom out");
 	  console.log("Zoom out action");
-	  // Zoom out logic goes here
-	  // For example, halve the segments
 	  segments = segments.filter((_, index) => index % 2 === 0);
 	}
-
+  
 	function handleExpand() {
-		actionsHistory.push("expand");
-		console.log("Expand action");
-		// Expand logic goes here
-		// For example, expand each segment time by 1 second
-		segments = segments.map((segment, index) => {
-			const seconds = index * 3;
-			return formatTime(seconds);
-		});
+	  actionsHistory.push("expand");
+	  console.log("Expand action");
+	  segments = segments.map((segment, index) => {
+		const seconds = index * 3;
+		return formatTime(seconds);
+	  });
 	}
 </script>
 
 <div class="container">
 	<div class="toolbox">
 		<div class="tools">
-			<img src={undo} alt="undo" on:click={handleUndo} />
-			<img src={redo} alt="redo" on:click={handleRedo} />
-			<img src={trim} alt="trim" on:click={handleTrim} />
-			<img src={duplicate} alt="duplicate" on:click={handleDuplicate} />
-			<img src={up} alt="up" on:click={handleUp} />
-			<img src={down} alt="down" on:click={handleDown} />
-			<img src={deleted} alt="delete" on:click={handleDelete} />
+			<button on:click={handleUndo}><img class="tool-icon" src={undo} alt="undo"  />
+			</button>
+			<button on:click={handleRedo}><img class="tool-icon" src={redo} alt="redo"  /> </button>
+			<button on:click={handleTrim}><img class="tool-icon" src={trim} alt="trim"  /> </button>
+			<button on:click={handleDuplicate}><img class="tool-icon" src={duplicate} alt="duplicate"  /></button>
+			<button on:click={handleUp}><img class="tool-icon" src={up} alt="up"  /></button>
+			<button on:click={handleDown}><img class="tool-icon" src={down} alt="down"  /> </button>
+			<button on:click={handleDelete}><img class="tool-icon" src={deleted} alt="delete"  /> </button>
+			
 		</div>
 
 		<div class="time">{currentTime} / {totalTime}</div>
 
 		<div class="sidetools">
-			<img class="img" src={plus} alt="plus" on:click={handlePlus} />
-			<img class="img" src={minus} alt="minus" on:click={handleMinus} />
-			<img class="img" src={expand} alt="expand" on:click={handleExpand} />
+			
+			
+			<button on:click={handlePlus}><img class="img" src={plus} alt="plus"  /></button>		
+			<button on:click={handleMinus}><img class="img" src={minus} alt="minus"  /></button>		
+			<button on:click={handleExpand}><img class="img" src={expand} alt="expand"  /></button>
+			
 		</div>
 	</div>
 
@@ -260,9 +259,11 @@
 	</div>
 
 	<div class="video-frames">
-		{#each videoFrames as frame}
-			<img src={frame} alt="Video frame" />
-		{/each}
+		<div class="frames-scroll">
+			{#each videoFrames as frame}
+				<img src={frame} alt="Video frame" />
+			{/each}
+		</div>
 	</div>
 </div>
 
@@ -295,25 +296,27 @@
 			padding-right: 20px;
 		}
 	}
+
 	.tools {
 		display: flex;
-		padding-right: 80px;
 		gap: 20px;
 	}
 
-	@media (max-width: 991px) {
-		.tools {
-			flex-wrap: wrap;
-		}
-	}
-
 	.time {
-		color: var(--White-1, #fff);
-		text-align: center;
-		margin: auto 0;
-		font:
-			600 14px/143% Inter,
-			sans-serif;
+		font-family: 'Inter';
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 143%; /* 20px */
+		letter-spacing: 0.009em;
+		text-align: right;
+		color: #9ca3af;
+		margin: 0;
+		margin-top: auto;
+		margin-bottom: auto;
+		padding-right: 20px;
+		overflow: hidden;
+		max-width: 200px;
 	}
 
 	@media (max-width: 991px) {
@@ -383,7 +386,7 @@
 		margin: auto 0;
 	}
 
-	.video-img {
+	.video-frames {
 		display: flex;
 		justify-content: flex-end;
 		align-self: start;
@@ -392,8 +395,15 @@
 		margin: 16px 0 59px;
 	}
 
+	.frames-scroll {
+		display: flex;
+		overflow-x: scroll;
+		gap: 10px;
+		padding-bottom: 10px;
+	}
+
 	@media (max-width: 991px) {
-		.video-img {
+		.video-frames {
 			flex-wrap: wrap;
 			margin-bottom: 40px;
 		}
