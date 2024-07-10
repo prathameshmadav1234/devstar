@@ -1,16 +1,6 @@
 <script>
+	import { trim,undo,redo,up,down,duplicate,deleted,plus,minus,expand, videoFilePath } from "../../Imports";
 	import { onMount } from 'svelte';
-	import trim from "../../assets/trim.svg";
-	import undo from "../../assets/undo.svg";
-	import redo from "../../assets/redo.svg";
-	import up from "../../assets/up.svg";
-	import down from "../../assets/down.svg";
-	import duplicate from "../../assets/duplicate.svg";
-	import deleted from "../../assets/delete.svg";
-	import plus from "../../assets/plus.svg";
-	import minus from "../../assets/minus.svg";
-	import expand from "../../assets/arrow.svg";
-	import videoFilePath from "../../assets/sample.mp4";
   
 	let currentTime = "00:00:00";
 	let totalTime = "00:15:22";
@@ -20,7 +10,7 @@
 	let actionsRedo = [];
 	let videoFrames = [];
   
-	const frameInterval = 2; // Extract a frame every 2 seconds
+	const frameInterval = 0.01; // Extract a frame every 2 seconds
   
 	onMount(() => {
 	  const videoFile = document.createElement("video");
