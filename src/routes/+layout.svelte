@@ -97,7 +97,7 @@
 		</Navbar>
 	</div>
 </header>
-<main class="bg-white dark:bg-gray-900" style="min-height: calc(100vh - 145px);">
+<main class="bg-white dark:bg-gray-900 overflow-hidden" style="min-height: calc(100vh - 145px);">
 	<slot></slot>
 </main>
 

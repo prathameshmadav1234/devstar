@@ -1,7 +1,98 @@
 <script>
+	// Define an array of sample text fonts and their styles
+	let sampleTextFonts = [
+		{
+			name: "Title text",
+			style: "font-family: Arial; font-size: 18px; font-weight: bold;",
+		},
+		{
+			name: "Regular text",
+			style: "font-family: Verdana; font-size: 14px;",
+		},
+		{
+			name: "Hand Write",
+			style: "font-family: 'Comic Sans MS'; font-size: 14px; font-style: italic;",
+		},
+		{
+			name: "Italic Text",
+			style: "font-family: Helvetica; font-size: 14px; font-style: italic;",
+		},
+		{
+			name: "Underline",
+			style: "font-family: 'Times New Roman'; font-size: 14px; text-decoration: underline;",
+		},
+		{
+			name: "UPPERCASE",
+			style: "font-family: 'Courier New'; font-size: 14px; text-transform: uppercase;",
+		},
+		{
+			name: "Rounded",
+			style: "font-family: 'Arial Rounded MT Bold'; font-size: 14px;",
+		},
+		{
+			name: "BLACK",
+			style: "font-family: Georgia; font-size: 14px; color: black;",
+		},
+		{
+			name: "WHITE",
+			style: "font-family: Palatino; font-size: 14px; color: white; background-color: black;",
+		},
+		{ name: "Classic", style: "font-family: Garamond; font-size: 14px;" },
+		{ name: "MEME TEXT", style: "font-family: Impact; font-size: 14px;" },
+		{
+			name: "Spacing",
+			style: "font-family: 'Lucida Sans Unicode'; font-size: 14px; letter-spacing: 2px;",
+		},
+		{ name: "Manuscript", style: "font-family: Tahoma; font-size: 14px;" },
+		{
+			name: "STRICT",
+			style: "font-family: 'Trebuchet MS'; font-size: 14px; font-weight: bold;",
+		},
+		{
+			name: "Cheerful",
+			style: "font-family: 'Arial Black'; font-size: 14px; font-weight: bold;",
+		},
+	];
+
+	let audioSuggestions = [
+		{
+			name: "Acoustic Breeze",
+			source: "https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3",
+		},
+		{
+			name: "Sunny",
+			source: "https://www.bensound.com/bensound-music/bensound-sunny.mp3",
+		},
+		{
+			name: "Better Days",
+			source: "https://www.bensound.com/bensound-music/bensound-betterdays.mp3",
+		},
+		{
+			name: "Energy",
+			source: "https://www.bensound.com/bensound-music/bensound-energy.mp3",
+		},
+		{
+			name: "Epic",
+			source: "https://www.bensound.com/bensound-music/bensound-epic.mp3",
+		},
+		{
+			name: "Creative Minds",
+			source: "https://www.bensound.com/bensound-music/bensound-creativeminds.mp3",
+		},
+	];
+
+	let showTextContainer = false;
+	let showAudioContainer = false;
+
+	function toggleTextContainer() {
+		showTextContainer = !showTextContainer;
+	}
+
+	function toggleAudioContainer() {
+		showAudioContainer = !showAudioContainer;
+	}
 </script>
 
-<!-- saurabh -->
 <div class="sidebar">
 	<img
 		alt=""
@@ -18,7 +109,7 @@
 		/>
 		<div class="icon-box-text">Media</div>
 	</div>
-	<div class="icon-box">
+	<div class="icon-box" on:click={toggleTextContainer}>
 		<img
 			alt=""
 			loading="lazy"
@@ -54,7 +145,35 @@
 		/>
 		<div class="icon-box-text">Layout</div>
 	</div>
+	<div class="icon-box">
+		<img
+			alt=""
+			loading="lazy"
+			src="https://cdn.builder.io/api/v1/image/assets/TEMP/5b103106b39d7e38d6ec66a1482b1259b027cc4f7a5b0c1e550df5a9a8378bdb?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
+			class="img"
+		/>
+		<div class="icon-box-text">Shapes</div>
+	</div>
+	<div class="icon-box">
+		<img
+			alt=""
+			loading="lazy"
+			src="https://cdn.builder.io/api/v1/image/assets/TEMP/a5b6127d369b66bcde23695fc71b62117486b299c36549859c9b5f1b220d4a7a?apiKey=e040a0c51faa4d4d8f0634ad4d3864ea&"
+			class="img"
+		/>
+		<div class="icon-box-text">Upload</div>
+	</div>
 </div>
+
+{#if showTextContainer}
+	<div class="text-container slide-in">
+		<div id="text-fonts-container">
+			{#each sampleTextFonts as font}
+				<div class="font-sample" style={font.style}>{font.name}</div>
+			{/each}
+		</div>
+	</div>
+{/if}
 
 <style>
 	.sidebar {
@@ -68,6 +187,8 @@
 		text-align: center;
 		line-height: 133%;
 		padding: 16px 0 80px;
+		position: relative;
+		z-index: 1;
 	}
 
 	@media (max-width: 991px) {
@@ -95,6 +216,15 @@
 		width: 86px;
 		height: 86px;
 		padding: 16px 8px;
+		transition:
+			background-color 0.3s,
+			transform 0.3s;
+		cursor: pointer;
+	}
+
+	.icon-box:hover {
+		background-color: var(--Hover-Background-1, #564d63);
+		transform: scale(1.05);
 	}
 
 	@media (max-width: 991px) {
@@ -106,5 +236,45 @@
 	.icon-box-text {
 		font-family: Inter, sans-serif;
 		margin-top: 4px;
+	}
+
+	.text-container {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 300px;
+		background-color: #413946;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		transform: translateX(-100%);
+		transition: transform 0.5s ease-in-out;
+		z-index: 0;
+	}
+
+	.text-container.slide-in {
+		transform: translateX(
+			86px
+		); /* Move to the right to reveal the text container without hiding the sidebar */
+	}
+
+	.text-container.slide-out {
+		transform: translateX(-100%);
+	}
+
+	#text-fonts-container {
+		margin-top: 20px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		padding: 10px;
+	}
+
+	.font-sample {
+		background-color: #564d63;
+		padding: 10px;
+		border-radius: 5px;
+		color: white;
+		text-align: center;
+		font-size: 14px;
 	}
 </style>
