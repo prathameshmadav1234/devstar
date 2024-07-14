@@ -19,6 +19,15 @@ import expand from "./assets/arrow.svg";
 import videoFilePath from "./assets/sample.mp4";
 
 
+import media from "./assets/media.svg";
+import text from "./assets/text.svg";
+import audio from "./assets/audio.svg";
+import transition from "./assets/transition.svg";
+import layout from "./assets/layout.svg";
+import logo from "./assets/logo.svg";
+
+
+
 // Exporting all assets as named exports
 export {
 	play,
@@ -35,5 +44,12 @@ export {
 	plus,
 	minus,
 	expand,
-	videoFilePath
+	videoFilePath,
+	media,
+	text,
+	audio,
+	transition,
+	layout,
+	logo
+
 };
